@@ -18,9 +18,39 @@ const db = mysql.createConnection(
     console.log('Connected to the election database.')
 );
 
-db.query(`select * from candidates`, (err, rows) => {
-    console.log(rows);
-});
+// // get all candidates
+// db.query(`select * from candidates`, (err, rows) => {
+//     console.log(rows);
+// });
+
+// // get a single candidate
+// db.query(`select * from candidates where id = 1`, (err, row) => {
+//     if (err) {
+//         console.log(err);
+//     }
+//     console.log(row);
+// });
+
+// // delete a candidate
+// db.query(`delete from candidates where id = ?`, 1, (err, row) => {
+//     if (err) {
+//         console.log(err);
+//     }
+//     console.log(row);
+// });
+
+// // create a candidate
+// const sql = `insert into candidates (id, first_name, last_name, industry_connected)
+//                 values (?,?,?,?)`;
+
+// const params = [1, 'Ronald', 'Firbank', 1];
+
+// db.query(sql, params, (err, result) => {
+//     if (err) {
+//         console.log(err);
+//     }
+//     console.log(result);
+// })
 
 // 404 error
 app.use((req, res) => {
