@@ -21,7 +21,11 @@ const db = mysql.createConnection(
 
 // get all candidates
 app.get('/api/candidates', (req, res) => {
-    const sql = `select * from candidates`;
+    const sql = `select candidates.*, parties.name 
+    as party_name 
+    from candidates 
+    left join parties 
+    on candidates.party_id = parties.id`;
 
 
     db.query(sql, (err, rows) => {
@@ -38,7 +42,13 @@ app.get('/api/candidates', (req, res) => {
 
 // get a single candidate
 app.get('/api/candidate/:id', (req, res) => {
-    const sql = `select * from candidates where id = ?`;
+    const sql = `select candidates.*, parties.name 
+    as party_name 
+    from candidates 
+    left join parties 
+    on candidates.party_id = parties.id 
+    where candidates.id = ?`;
+
     const params = [req.params.id];
 
     db.query(sql, params, (err, rows) => {
